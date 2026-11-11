@@ -326,6 +326,28 @@
             </label>
           </div>
 
+          <div class="setting-row" data-search="не отслеживать do not track dnt приватность слежение">
+            <div class="row-text">
+              <div class="row-title">Запрашивать запрет отслеживания</div>
+              <div class="row-desc">Отправляет сайтам сигнал Do Not Track и не добавляет рекламный идентификатор.</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="tgDoNotTrack" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row" data-search="сторонние cookie cookies куки трекеры приватность">
+            <div class="row-text">
+              <div class="row-title">Блокировать сторонние cookie</div>
+              <div class="row-desc">Не принимает cookie и не отправляет их между разными сайтами. Некоторые входы могут потребовать отключения этой функции.</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="tgThirdPartyCookies" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
           <div class="setting-row" data-search="очистить историю просмотров посещения журнал">
             <div class="row-text">
               <div class="row-title">История просмотров</div>
@@ -340,6 +362,14 @@
               <div class="row-desc">Освободить временные сохранённые файлы и изображения веб-сайтов.</div>
             </div>
             <button class="ghost-btn" id="btnClearCache">Очистить кэш</button>
+          </div>
+
+          <div class="setting-row" data-search="данные сайтов cookie куки входы localstorage очистить">
+            <div class="row-text">
+              <div class="row-title">Данные сайтов</div>
+              <div class="row-desc">Удаляет cookie, локальное хранилище и данные сервис-воркеров. Вы выйдете из сайтов.</div>
+            </div>
+            <button class="ghost-btn danger" id="btnClearSiteData">Очистить данные</button>
           </div>
         </div>
       </section>

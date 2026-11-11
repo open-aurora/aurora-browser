@@ -45,6 +45,7 @@ contextBridge.exposeInMainWorld('browser', {
   updateSettings: (patch) => ipcRenderer.invoke('settings:update', patch),
   resetSettings: () => ipcRenderer.invoke('settings:reset'),
   openSettings: () => ipcRenderer.send('settings:open'),
+  clearSiteData: () => ipcRenderer.invoke('start:clear-site-data'),
 
   openOverlay: (type) => ipcRenderer.invoke('overlay:open', type),
   closeOverlay: () => ipcRenderer.invoke('overlay:close'),

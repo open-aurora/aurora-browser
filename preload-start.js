@@ -24,6 +24,7 @@ if (location.protocol === 'aurora:') {
     resetSettings: () => ipcRenderer.invoke('start:reset-settings'),
     clearHistory: () => ipcRenderer.invoke('start:clear-history'),
     clearCache: () => ipcRenderer.invoke('start:clear-cache'),
+    clearSiteData: () => ipcRenderer.invoke('start:clear-site-data'),
     memoryStats: () => ipcRenderer.invoke('memory:stats'),
     freeMemory: () => ipcRenderer.invoke('memory:free'),
     isElectron: true,

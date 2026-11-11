@@ -161,6 +161,8 @@ function bind() {
     tgSession: 'restoreSession',
     tgMemorySaver: 'memorySaver',
     tgAdblock: 'adblock',
+    tgDoNotTrack: 'doNotTrack',
+    tgThirdPartyCookies: 'blockThirdPartyCookies',
   };
   Object.entries(toggles).forEach(([id, key]) => {
     $('#' + id).addEventListener('change', (e) => patch({ [key]: e.target.checked }));
@@ -249,6 +251,19 @@ function bind() {
     btn.disabled = false;
     toast('Кэш браузера очищен');
     refreshMemory();
+  });
+  $('#btnClearSiteData').addEventListener('click', () => {
+    confirmAction(
+      'Очистить данные сайтов?',
+      'Будут удалены cookie, локальное хранилище и данные сервис-воркеров. Вы выйдете из сайтов.',
+      async () => {
+        const btn = $('#btnClearSiteData');
+        btn.disabled = true;
+        await window.aurora.clearSiteData().catch(() => {});
+        btn.disabled = false;
+        toast('Данные сайтов очищены');
+      },
+    );
   });
 
   // reset
@@ -368,6 +383,8 @@ function syncUI() {
   $('#tgSession').checked = settings.restoreSession !== false;
   $('#tgMemorySaver').checked = settings.memorySaver !== false;
   $('#tgAdblock').checked = settings.adblock !== false;
+  $('#tgDoNotTrack').checked = settings.doNotTrack !== false;
+  $('#tgThirdPartyCookies').checked = settings.blockThirdPartyCookies !== false;
 }
 
 function fillPercent(value) {

@@ -95,6 +95,8 @@ const DEFAULT_SETTINGS = {
   restoreSession: true,
   memorySaver: true,
   sleepTabs: true,
+  doNotTrack: true,
+  blockThirdPartyCookies: true,
   quickLinks: [
     { name: 'YouTube', url: 'https://www.youtube.com' },
     { name: 'GitHub', url: 'https://github.com' },
@@ -1267,6 +1269,44 @@ function setupSession() {
     } catch {}
     callback({});
   });
+
+  // Express the user's privacy preference without exposing browser identity.
+  // Also avoid sending cookies to an embedded third-party origin when enabled.
+  ses.webRequest.onBeforeSendHeaders({ urls: ['http://*/*', 'https://*/*'] }, (details, callback) => {
+    const headers = { ...details.requestHeaders };
+    if (settings.doNotTrack !== false) headers.DNT = '1';
+
+    if (settings.blockThirdPartyCookies !== false && headers.Cookie) {
+      try {
+        const requestHost = new URL(details.url).hostname;
+        const initiator = details.initiator || '';
+        const initiatorHost = initiator ? new URL(initiator).hostname : requestHost;
+        const sameSite = initiatorHost === requestHost ||
+          initiatorHost.endsWith(`.${requestHost}`) || requestHost.endsWith(`.${initiatorHost}`);
+        if (!sameSite) delete headers.Cookie;
+      } catch {}
+    }
+    callback({ requestHeaders: headers });
+  });
+
+  ses.webRequest.onHeadersReceived({ urls: ['http://*/*', 'https://*/*'] }, (details, callback) => {
+    const responseHeaders = { ...details.responseHeaders };
+    if (settings.blockThirdPartyCookies !== false) {
+      try {
+        const requestHost = new URL(details.url).hostname;
+        const initiator = details.initiator || '';
+        const initiatorHost = initiator ? new URL(initiator).hostname : requestHost;
+        const sameSite = initiatorHost === requestHost ||
+          initiatorHost.endsWith(`.${requestHost}`) || requestHost.endsWith(`.${initiatorHost}`);
+        if (!sameSite) {
+          for (const key of Object.keys(responseHeaders)) {
+            if (key.toLowerCase() === 'set-cookie') delete responseHeaders[key];
+          }
+        }
+      } catch {}
+    }
+    callback({ responseHeaders });
+  });
 }
 
 // ---------------------------------------------------------------- window
@@ -1545,6 +1585,14 @@ function setupStartIPC() {
   });
   ipcMain.handle('start:clear-cache', async () => {
     try { await session.defaultSession.clearCache(); } catch {}
+    return true;
+  });
+  ipcMain.handle('start:clear-site-data', async () => {
+    try {
+      await session.defaultSession.clearStorageData({
+        storages: ['cookies', 'localstorage', 'indexdb', 'websql', 'serviceworkers', 'cachestorage'],
+      });
+    } catch {}
     return true;
   });
   ipcMain.on('start:search', (_e, query) => {
