@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Аврора Браузер</title>
+  <link rel="stylesheet" href="../css/chrome.css">
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></symbol>
+      <symbol id="i-fwd" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></symbol>
+      <symbol id="i-reload" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+      <symbol id="i-max" viewBox="0 0 24 24"><rect x="5.5" y="5.5" width="13" height="13" rx="2.5"/></symbol>
+      <symbol id="i-restore" viewBox="0 0 24 24"><rect x="4.5" y="8.5" width="11" height="11" rx="2.4"/><path d="M8.5 8.5v-1a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-1"/></symbol>
+      <symbol id="i-min" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.4"/><path d="M15.5 15.5 20 20"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.3 3.6 5.2 3.6 8.5S14.4 18.2 12 20.5C9.6 18.2 8.4 15.3 8.4 12S9.6 5.8 12 3.5z"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="3"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3.5v11"/><path d="M7.5 10 12 14.5 16.5 10"/><path d="M4.5 17v1.5a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V17"/></symbol>
+      <symbol id="i-dots" viewBox="0 0 24 24"><circle cx="12" cy="5.5" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="18.5" r="1.4" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6.5 4.5h11a1 1 0 0 1 1 1V20l-6.5-4-6.5 4V5.5a1 1 0 0 1 1-1z"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15"/><path d="M9.5 7V4.5h5V7"/><path d="M6.5 7l1 13h9l1-13"/><path d="M10.5 11v5M13.5 11v5"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 9.5 17 19 7.5"/></symbol>
+      <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3.5 7.5a2 2 0 0 1 2-2h4l2 2.5h7a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/></symbol>
+      <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4.5h5.5V10"/><path d="M19.5 4.5 11 13"/><path d="M18 14v4.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-10a2 2 0 0 1 2-2h4.5"/></symbol>
+      <symbol id="i-up" viewBox="0 0 24 24"><path d="M6 14l6-6 6 6"/></symbol>
+      <symbol id="i-down" viewBox="0 0 24 24"><path d="M6 10l6 6 6-6"/></symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 14.4a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V20a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.03H4a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 5.66 7.8a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H10a1.7 1.7 0 0 0 1.03-1.56V2a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V8a1.7 1.7 0 0 0 1.56 1.03H22a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.56 1.03z" transform="translate(-1.0 -1.0) scale(1.08)"/></symbol>
+      <symbol id="i-find" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.4"/><path d="M15.5 15.5 20 20"/><path d="M8.5 10.8h4.6"/></symbol>
+      <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 0 0 0 17h1.2a1.9 1.9 0 0 0 1.4-3.2 1.9 1.9 0 0 1 1.4-3.2h2.4a2.6 2.6 0 0 0 2.6-2.7A8.3 8.3 0 0 0 12 3.5z"/><circle cx="8" cy="9" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="6.8" r="1" fill="currentColor" stroke="none"/><circle cx="16" cy="9" r="1" fill="currentColor" stroke="none"/><circle cx="7.6" cy="13.6" r="1" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5"/><circle cx="12" cy="7.8" r="1" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3.5 19 6v5.5c0 4.3-2.8 7.6-7 9-4.2-1.4-7-4.7-7-9V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 1.35l1.7 5L19 6.5l-5 1.7L12 21l-1.7-5L5 6.5l5-1.7z"/></symbol>
+      <symbol id="i-logo" viewBox="0 0 24 24"><path d="M6.9 19.6 12 5.2l5.1 14.4M8.9 15.2h6.2"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.4A8.4 8.4 0 0 1 9.6 4 7.2 7.2 0 1 0 20 14.4z"/></symbol>
+    </defs>
+  </svg>
+
+  <div id="app">
+    <header id="top">
+      <div id="tabbar" class="tabbar">
+        <div class="brand" id="brand" title="Аврора Браузер">
+          <svg class="logo"><use href="#i-logo"/></svg>
+        </div>
+        <div class="tabs" id="tabs"></div>
+        <button id="newTabBtn" class="new-tab" title="Новая вкладка (Ctrl+T)" aria-label="Новая вкладка">
+          <svg><use href="#i-plus"/></svg>
+        </button>
+        <div class="drag-space"></div>
+        <div class="win-actions">
+          <button id="winMin" class="win-btn" title="Свернуть" aria-label="Свернуть"><svg><use href="#i-min"/></svg></button>
+          <button id="winMax" class="win-btn" title="Развернуть" aria-label="Развернуть"><svg><use href="#i-max"/></svg></button>
+          <button id="winClose" class="win-btn danger" title="Закрыть" aria-label="Закрыть"><svg><use href="#i-x"/></svg></button>
+        </div>
+      </div>
+
+      <div id="toolbar" class="toolbar">
+        <div class="nav-group">
+          <button id="backBtn" class="icon-btn" title="Назад (Alt+←)" aria-label="Назад"><svg><use href="#i-back"/></svg></button>
+          <button id="fwdBtn" class="icon-btn" title="Вперёд (Alt+→)" aria-label="Вперёд"><svg><use href="#i-fwd"/></svg></button>
+          <button id="reloadBtn" class="icon-btn" title="Обновить (Ctrl+R)" aria-label="Обновить"><svg class="reload-icon"><use href="#i-reload"/></svg><svg class="stop-icon"><use href="#i-x"/></svg></button>
+          <button id="homeBtn" class="icon-btn" title="Домашняя страница" aria-label="Домашняя страница"><svg><use href="#i-home"/></svg></button>
+        </div>
+
+        <div class="omni" id="omni">
+          <span class="omni-leading" id="omniLeading"><svg><use href="#i-search"/></svg></span>
+          <input id="omniInput" type="text" spellcheck="false" autocomplete="off"
+                 placeholder="Поиск или адрес сайта" aria-label="Адресная строка">
+          <button id="omniStar" class="omni-action" title="В закладки (Ctrl+D)" aria-label="В закладки">
+            <svg><use href="#i-star"/></svg>
+          </button>
+        </div>
+
+        <div class="tool-group">
+          <button id="dlBtn" class="icon-btn has-badge" title="Загрузки" aria-label="Загрузки">
+            <svg><use href="#i-download"/></svg>
+            <span class="badge" id="dlBadge" hidden></span>
+          </button>
+          <button id="bmBtn" class="icon-btn" title="Закладки" aria-label="Закладки"><svg><use href="#i-bookmark"/></svg></button>
+          <button id="menuBtn" class="icon-btn" title="Меню Аврора Браузера" aria-label="Меню"><svg><use href="#i-dots"/></svg></button>
+        </div>
+      </div>
+
+      <div id="bmBar" class="bm-bar">
+        <div class="bm-list" id="bmList"></div>
+        <button class="bm-all" id="bmAll" title="Все закладки">Все закладки</button>
+      </div>
+
+      <div id="findBar" class="find-bar" hidden>
+        <div class="find-field">
+          <svg class="find-ico"><use href="#i-search"/></svg>
+          <input id="findInput" type="text" placeholder="Найти на странице" spellcheck="false" aria-label="Найти на странице">
+          <span class="find-count" id="findCount">0 / 0</span>
+          <button class="find-btn" id="findPrev" title="Предыдущее совпадение"><svg><use href="#i-up"/></svg></button>
+          <button class="find-btn" id="findNext" title="Следующее совпадение"><svg><use href="#i-down"/></svg></button>
+          <button class="find-btn" id="findClose" title="Закрыть"><svg><use href="#i-x"/></svg></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="stage" aria-hidden="true">
+      <div class="stage-glow one"></div>
+      <div class="stage-glow two"></div>
+    </main>
+
+    <div id="overlay" class="overlay" hidden>
+      <div class="backdrop" id="backdrop"></div>
+      <div class="overlay-ui">
+
+        <section id="sheetMenu" class="sheet menu-sheet" hidden>
+          <div class="sheet-head">
+            <div>
+              <h2>Аврора Браузер</h2>
+              <p class="sheet-sub">Быстрое меню</p>
+            </div>
+            <button class="sheet-close" data-close aria-label="Закрыть"><svg><use href="#i-x"/></svg></button>
+          </div>
+          <div class="menu-list">
+            <button class="menu-item" data-action="new-tab">
+              <span class="mi-ico"><svg><use href="#i-plus"/></svg></span>
+              <span class="mi-label">Новая вкладка</span><kbd>Ctrl T</kbd>
+            </button>
+            <button class="menu-item" data-action="history">
+              <span class="mi-ico"><svg><use href="#i-clock"/></svg></span>
+              <span class="mi-label">История</span><kbd>Ctrl H</kbd>
+            </button>
+            <button class="menu-item" data-action="bookmarks">
+              <span class="mi-ico"><svg><use href="#i-bookmark"/></svg></span>
+              <span class="mi-label">Закладки</span>
+            </button>
+            <button class="menu-item" data-action="downloads">
+              <span class="mi-ico"><svg><use href="#i-download"/></svg></span>
+              <span class="mi-label">Загрузки</span>
+            </button>
+            <div class="menu-sep"></div>
+            <button class="menu-item" data-action="find">
+              <span class="mi-ico"><svg><use href="#i-find"/></svg></span>
+              <span class="mi-label">Найти на странице</span><kbd>Ctrl F</kbd>
+            </button>
+            <button class="menu-item" data-action="settings">
+              <span class="mi-ico"><svg><use href="#i-settings"/></svg></span>
+              <span class="mi-label">Настройки</span><kbd>Ctrl ,</kbd>
+            </button>
+            <button class="menu-item" data-action="free-memory">
+              <span class="mi-ico"><svg><use href="#i-moon"/></svg></span>
+              <span class="mi-label">Освободить память</span>
+            </button>
+            <button class="menu-item" data-action="about">
+              <span class="mi-ico"><svg><use href="#i-info"/></svg></span>
+              <span class="mi-label">О браузере</span>
+            </button>
+            <div class="menu-sep"></div>
+            <div class="zoom-row">
+              <span class="mi-ico"><svg><use href="#i-search"/></svg></span>
+              <span class="mi-label">Масштаб</span>
+              <div class="zoom-ctrl">
+                <button data-zoom="-1" aria-label="Уменьшить"><svg><use href="#i-minus"/></svg></button>
+                <span id="zoomValue">100%</span>
+                <button data-zoom="1" aria-label="Увеличить"><svg><use href="#i-plus"/></svg></button>
+              </div>
+            </div>
+          </div>
+          <div class="menu-foot">
+            <span class="mi-ico"><svg><use href="#i-shield"/></svg></span>
+            <span id="blockedInfo">Заблокировано рекламы: 0</span>
+          </div>
+        </section>
+
+        <section id="sheetPanel" class="sheet panel-sheet" hidden>
+          <div class="sheet-head">
+            <div>
+              <h2 id="panelTitle">Панель</h2>
+              <p class="sheet-sub" id="panelSub"></p>
+            </div>
+            <div class="panel-head-actions" id="panelActions"></div>
+            <button class="sheet-close" data-close aria-label="Закрыть"><svg><use href="#i-x"/></svg></button>
+          </div>
+          <div class="panel-body" id="panelBody"></div>
+        </section>
+
+        <section id="sheetSuggest" class="sheet suggest-sheet" hidden>
+          <div class="suggest-list" id="suggestList"></div>
+          <div class="suggest-hint">
+            <span><kbd>↑</kbd><kbd>↓</kbd> выбрать</span>
+            <span><kbd>Enter</kbd> открыть</span>
+            <span><kbd>Esc</kbd> закрыть</span>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <div id="toast" class="toast" hidden></div>
+  </div>
+
+  <script src="../js/chrome.js"></script>
+</body>
+</html>

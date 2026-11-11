@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' aurora: data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Новая вкладка</title>
+  <link rel="stylesheet" href="start.css">
+</head>
+<body>
+  <div class="scene" aria-hidden="true">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="blob blob-c"></div>
+    <div class="grain"></div>
+  </div>
+
+  <div class="page">
+    <header class="head">
+      <div class="head-actions">
+        <button class="appearance-btn" id="appearanceBtn" title="Быстрое оформление">
+          <svg><use href="#i-palette"/></svg>
+          <span>Оформление</span>
+        </button>
+        <button class="head-icon" id="settingsBtn" title="Настройки (Ctrl+,)" aria-label="Настройки">
+          <svg><use href="#i-settings"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="main" id="mainContent">
+      <div class="status-widgets">
+        <div class="clock status-card" id="clock">
+          <span class="status-icon clock-icon" aria-hidden="true"><svg><use href="#i-clock"/></svg></span>
+          <div class="status-copy">
+            <span class="status-label">Местное время</span>
+            <div class="time" id="clockTime">--:--:--</div>
+            <div class="date" id="clockDate"></div>
+          </div>
+        </div>
+        <div class="memory status-card" id="memory" title="Память процессов Аврора Браузера (PSS)">
+          <span class="status-icon memory-icon" id="memoryIcon" aria-hidden="true"><svg><use href="#i-memory"/></svg></span>
+          <div class="status-copy">
+            <span class="status-label">Память браузера <span class="memory-live" aria-hidden="true"></span></span>
+            <div class="memory-value" id="memoryValue" aria-live="off">— <small>МБ</small></div>
+            <div class="memory-detail" id="memoryDetail">Загрузка данных…</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero">
+        <h1 class="greeting" id="greeting">Доброе утро</h1>
+        <p class="subtitle" id="subtitle">Куда отправимся сегодня?</p>
+
+        <div class="search-wrap">
+          <form class="search" id="searchForm" autocomplete="off">
+            <span class="search-ico">
+              <svg><use href="#i-search"/></svg>
+            </span>
+            <input id="q" type="text" placeholder="Поиск в Google или адрес сайта"
+                   spellcheck="false" autocomplete="off" aria-label="Поиск или адрес">
+            <button type="button" class="engine-picker" id="enginePicker" aria-haspopup="listbox" aria-expanded="false" aria-label="Выбрать поисковую систему">
+              <span class="engine-picker-logo" id="enginePickerLogo"></span>
+              <span id="enginePickerName">Google</span>
+              <svg class="engine-picker-chevron"><use href="#i-chevron-down"/></svg>
+            </button>
+            <button type="submit" class="go" title="Открыть" aria-label="Открыть">
+              <svg><use href="#i-arrow"/></svg>
+            </button>
+          </form>
+          <div class="engine-menu" id="engineMenu" role="listbox" aria-label="Поисковая система" hidden></div>
+          <div class="suggest" id="startSuggest" hidden>
+            <div class="suggest-list" id="startSuggestList"></div>
+            <div class="suggest-foot">
+              <span><kbd>↑</kbd><kbd>↓</kbd> выбрать</span>
+              <span><kbd>Enter</kbd> открыть</span>
+              <span><kbd>Esc</kbd> закрыть</span>
+            </div>
+          </div>
+        </div>
+        <p class="hint"><kbd>Enter</kbd> открыть · <kbd>Ctrl</kbd> + <kbd>L</kbd> адресная строка</p>
+      </div>
+
+      <section class="links">
+        <div class="links-head">
+          <span class="links-title">Быстрый доступ</span>
+          <div class="links-actions">
+            <button class="mini" id="resetLinks" hidden>Сбросить</button>
+            <button class="mini" id="editLinks">Изменить</button>
+          </div>
+        </div>
+        <div class="grid" id="grid"></div>
+      </section>
+      <footer class="foot">
+        <span class="foot-engine" id="footEngine">Google</span>
+        <span class="dot"></span>
+        <span>Аврора Браузер</span>
+        <span class="dot"></span>
+        <span id="footDate"></span>
+      </footer>
+    </main>
+  </div>
+
+  <div class="popover" id="appearance" hidden>
+    <div class="pop-head">
+      <strong>Оформление</strong>
+      <button class="pop-close" id="popClose" aria-label="Закрыть">
+        <svg><use href="#i-x"/></svg>
+      </button>
+    </div>
+    <div class="pop-group">
+      <div class="pop-label">Акцент</div>
+      <div class="swatches" id="popAccents"></div>
+    </div>
+    <div class="pop-group">
+      <div class="pop-label">Фон</div>
+      <div class="backgrounds" id="popBackgrounds"></div>
+    </div>
+    <button class="pop-link" id="popMore">
+      Все настройки
+      <svg><use href="#i-arrow"/></svg>
+    </button>
+  </div>
+
+  <div class="welcome-backdrop" id="welcome" hidden>
+    <section class="welcome-card" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+      <h1 id="welcomeTitle">Настроить браузер</h1>
+      <p class="welcome-copy">Выберите поисковую систему. Имя профиля можно не указывать.</p>
+      <label class="welcome-label" for="welcomeName">Имя профиля <span>необязательно</span></label>
+      <input class="welcome-input" id="welcomeName" type="text" maxlength="24" placeholder="Например, Анна" autocomplete="given-name">
+      <div class="welcome-label welcome-engine-label" id="welcomeEngineLabel">Поисковая система</div>
+      <div class="welcome-engines" id="welcomeEngines" role="group" aria-labelledby="welcomeEngineLabel"></div>
+      <div class="welcome-actions">
+        <button class="welcome-skip" id="welcomeSkip" type="button">Настроить позже</button>
+        <button class="welcome-next" id="welcomeNext" type="button">Готово</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="dialog-backdrop" id="dialogBackdrop" hidden>
+    <div class="dialog" role="dialog" aria-modal="true">
+      <h2 id="dlgTitle">Добавить сайт</h2>
+      <label class="field">
+        <span>Название</span>
+        <input id="dlgName" type="text" placeholder="Например, GitHub" maxlength="30" spellcheck="false">
+      </label>
+      <label class="field">
+        <span>Адрес</span>
+        <input id="dlgUrl" type="text" placeholder="github.com" spellcheck="false">
+      </label>
+      <div class="dialog-actions">
+        <button class="btn ghost" id="dlgCancel">Отмена</button>
+        <button class="btn primary" id="dlgSave">Сохранить</button>
+      </div>
+    </div>
+  </div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.4"/><path d="M15.5 15.5 20 20"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13"/><path d="M13 7l5 5-5 5"/></symbol>
+      <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol>
+      <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 0 0 0 17h1.2a1.9 1.9 0 0 0 1.4-3.2 1.9 1.9 0 0 1 1.4-3.2h2.4a2.6 2.6 0 0 0 2.6-2.7A8.3 8.3 0 0 0 12 3.5z"/><circle cx="8" cy="9" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="6.8" r="1" fill="currentColor" stroke="none"/><circle cx="16" cy="9" r="1" fill="currentColor" stroke="none"/><circle cx="7.6" cy="13.6" r="1" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.3 3.6 5.2 3.6 8.5S14.4 18.2 12 20.5C9.6 18.2 8.4 15.3 8.4 12S9.6 5.8 12 3.5z"/></symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 14.4a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V20a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.03H4a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 5.66 7.8a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H10a1.7 1.7 0 0 0 1.03-1.56V2a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V8a1.7 1.7 0 0 0 1.56 1.03H22a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.56 1.03z" transform="translate(-1.0 -1.0) scale(1.08)"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+      <symbol id="i-memory" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3"/><path d="M9 9h6v6H9zM9 2v3m6-3v3M9 19v3m6-3v3M2 9h3m-3 6h3m14-6h3m-3 6h3"/></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 1.35l1.7 5L19 6.5l-5 1.7L12 21l-1.7-5L5 6.5l5-1.7z"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/></symbol>
+    </defs>
+  </svg>
+
+  <script src="start.js"></script>
+</body>
+</html>

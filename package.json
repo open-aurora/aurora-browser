@@ -1,0 +1,14 @@
+{
+  "name": "aurora-browser",
+  "version": "1.0.0",
+  "description": "Аврора Браузер — минималистичный браузер для Linux",
+  "main": "main.js",
+  "author": "Аврора Браузер",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^45.2.3"
+  }
+}

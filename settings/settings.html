@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Настройки — Аврора Браузер</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%234f7cff'/%3E%3Cpath d='M7 17l5-10 5 10M9 14h6' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body data-gradient="aurora">
+  <div class="scene" aria-hidden="true">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="blob blob-c"></div>
+    <div class="grain"></div>
+  </div>
+
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark"><svg><use href="#i-logo"/></svg></div>
+        <div class="brand-text">
+          <strong>Аврора Браузер</strong>
+          <span>Настройки</span>
+        </div>
+      </div>
+
+      <div class="side-search" data-search-ignore>
+        <svg class="search-ico"><use href="#i-search"/></svg>
+        <input id="settingsSearch" type="text" placeholder="Найти настройку" spellcheck="false" autocomplete="off" aria-label="Поиск по настройкам">
+        <kbd>/</kbd>
+      </div>
+
+      <nav class="nav" id="nav">
+        <button class="nav-item active" data-section="sec-appearance">
+          <svg><use href="#i-palette"/></svg>
+          <span>Оформление</span>
+        </button>
+        <button class="nav-item" data-section="sec-search">
+          <svg><use href="#i-globe"/></svg>
+          <span>Поиск и стартовая</span>
+        </button>
+        <button class="nav-item" data-section="sec-tabs">
+          <svg><use href="#i-cpu"/></svg>
+          <span>Вкладки и память</span>
+        </button>
+        <button class="nav-item" data-section="sec-privacy">
+          <svg><use href="#i-shield"/></svg>
+          <span>Приватность</span>
+        </button>
+        <button class="nav-item" data-section="sec-about">
+          <svg><use href="#i-info"/></svg>
+          <span>О браузере</span>
+        </button>
+      </nav>
+
+      <div class="side-foot">
+        <div class="sync-status" id="saveState">
+          <span class="dot"></span>
+          <span>Все изменения сохранены</span>
+        </div>
+        <div class="version-tag">Аврора Браузер <span id="sideVersion">1.0.0</span></div>
+      </div>
+    </aside>
+
+    <main class="content" id="content">
+      <header class="page-head">
+        <div>
+          <span class="eyebrow">Параметры браузера</span>
+          <h1>Настройки</h1>
+          <p class="lede">Персонализируйте Аврора Браузер под ваш стиль работы. Изменения применяются мгновенно.</p>
+        </div>
+      </header>
+
+      <div id="noResults" class="no-results" hidden>
+        <div class="nr-icon"><svg><use href="#i-search"/></svg></div>
+        <h3>Ничего не найдено</h3>
+        <p>Попробуйте избавить запрос от опечаток или поискать другие ключевые слова.</p>
+      </div>
+
+      <!-- Section 1: Appearance -->
+      <section class="section" id="sec-appearance">
+        <div class="section-head">
+          <h2>Оформление</h2>
+          <p>Цвета, темы, формы и плотность элементов интерфейса.</p>
+        </div>
+
+        <div class="card preview-card" data-search="предпросмотр интерфейс окно живой акцент скругление">
+          <div class="pv-info">
+            <span class="pv-badge">Живой предпросмотр</span>
+            <h3>Так выглядит ваш браузер</h3>
+            <p>Изменения акцента, фона и скруглений отображаются здесь и на всех страницах Аврора Браузера в реальном времени.</p>
+          </div>
+          <div class="pv-window">
+            <div class="pv-chrome">
+              <div class="pv-dots"><span></span><span></span><span></span></div>
+              <div class="pv-tab active"><svg><use href="#i-logo"/></svg>Новая вкладка</div>
+              <div class="pv-tab-add">+</div>
+            </div>
+            <div class="pv-toolbar">
+              <div class="pv-nav"><span>‹</span><span>›</span><span>↻</span></div>
+              <div class="pv-omni">
+                <svg><use href="#i-search"/></svg>
+                <span>Поиск или адрес сайта</span>
+                <svg class="pv-star"><use href="#i-star"/></svg>
+              </div>
+              <div class="pv-btn"><svg><use href="#i-palette"/></svg></div>
+            </div>
+            <div class="pv-body">
+              <div class="pv-greeting">Добрый день</div>
+              <div class="pv-tiles">
+                <div class="pv-tile"><span class="pv-tile-icon">Y</span><span>YouTube</span></div>
+                <div class="pv-tile"><span class="pv-tile-icon">G</span><span>GitHub</span></div>
+                <div class="pv-tile"><span class="pv-tile-icon">M</span><span>Mail</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="setting-row" data-search="акцентный цвет palette тема палитра оттенок">
+            <div class="row-text">
+              <div class="row-title">Акцентный цвет</div>
+              <div class="row-desc">Используется для активных элементов, кнопок и подсветок.</div>
+            </div>
+            <div class="swatches" id="accentSwatches"></div>
+          </div>
+
+          <div class="setting-row column" data-search="скругление углы радиус radius форма карточки">
+            <div class="row-text flex-head">
+              <div>
+                <div class="row-title">Скругление элементов</div>
+                <div class="row-desc">Регулирует скругление кнопок, вкладок и карточек страниц.</div>
+              </div>
+              <span class="range-val" id="radiusVal">16 px</span>
+            </div>
+            <input type="range" id="radiusRange" min="6" max="26" step="1" class="range">
+          </div>
+
+          <div class="setting-row column" data-search="фон новая вкладка градиент персик небесный шалфей сирень">
+            <div class="row-text">
+              <div class="row-title">Фон стартовой страницы</div>
+              <div class="row-desc">Мягкие градиенты для стартового экрана браузера.</div>
+            </div>
+            <div class="gradients-grid" id="gradientsGrid"></div>
+          </div>
+
+          <div class="setting-row" data-search="плотность удобный компактный интерфейс размер">
+            <div class="row-text">
+              <div class="row-title">Плотность интерфейса</div>
+              <div class="row-desc">Размер отступов и высоты панелей.</div>
+            </div>
+            <div class="segmented" id="densityGroup">
+              <button data-density="cozy" class="active">Удобно</button>
+              <button data-density="compact">Компактно</button>
+            </div>
+          </div>
+
+          <div class="setting-row" data-search="анимация плавность переходы элементы">
+            <div class="row-text">
+              <div class="row-title">Анимации интерфейса</div>
+              <div class="row-desc">Плавные переходы и всплытия элементов.</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="tgAnimations" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Search & Start -->
+      <section class="section" id="sec-search">
+        <div class="section-head">
+          <h2>Поиск и стартовая страница</h2>
+          <p>Поисковая система, обращения и ссылки быстрого доступа.</p>
+        </div>
+
+        <div class="card">
+          <div class="setting-row" data-search="поисковая система google duckduckgo yandex bing brave поисковик">
+            <div class="row-text">
+              <div class="row-title">Поисковая система по умолчанию</div>
+              <div class="row-desc">Используется при поиске из адресной строки и со стартовой.</div>
+            </div>
+            <div class="select-wrapper">
+              <select id="engineSelect" class="select"></select>
+              <svg class="select-arrow"><use href="#i-chevron"/></svg>
+            </div>
+          </div>
+
+          <div class="setting-row" data-search="имя обращение приветствие персональное">
+            <div class="row-text">
+              <div class="row-title">Обращение на стартовой</div>
+              <div class="row-desc">Персональное приветствие (например: «Добрый день, Алексей»).</div>
+            </div>
+            <input type="text" id="nameInput" class="text-input" placeholder="Ваше имя" maxlength="24" spellcheck="false">
+          </div>
+
+          <div class="setting-row" data-search="часы время дата стартовая экран">
+            <div class="row-text">
+              <div class="row-title">Показывать часы</div>
+              <div class="row-desc">Отображать время и дату в верхней части стартового экрана.</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="tgClock" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row" data-search="закладки панель под адресной строкой">
+            <div class="row-text">
+              <div class="row-title">Панель закладок</div>
+              <div class="row-desc">Отображать строку закладок под адресной панелью.</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="tgBookmarks" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Quick links manager -->
+        <div class="card" data-search="быстрый доступ ссылки тайлы сайты плитки стартовая">
+          <div class="card-head">
+            <div>
+              <div class="row-title">Ссылки быстрого доступа</div>
+              <div class="row-desc">Сайты, отображаемые на стартовой странице.</div>
+            </div>
+            <div class="head-btn-group">
+              <button class="ghost-btn" id="btnResetLinks">Восстановить по умолчанию</button>
+              <button class="primary-btn sm" id="btnAddLink">
+                <svg><use href="#i-plus"/></svg>
+                <span>Добавить сайт</span>
+              </button>
+            </div>
+          </div>
+          <div class="quick-grid" id="linksGrid"></div>
+        </div>
+      </section>
+
+      <!-- Section 3: Tabs & Memory -->
+      <section class="section" id="sec-tabs">
+        <div class="section-head">
+          <h2>Вкладки и память</h2>
+          <p>Оптимизация потребления ОЗУ и управление сессией.</p>
+        </div>
+
+        <!-- Live memory card -->
+        <div class="card mem-card" data-search="память озу pss процессы оптимизация сон">
+          <div class="mem-head">
+            <div class="mem-icon"><svg><use href="#i-cpu"/></svg></div>
+            <div class="mem-titles">
+              <span class="mem-label">Использование памяти</span>
+              <div class="mem-value-row">
+                <span class="mem-val" id="memValue">--</span>
+                <span class="mem-unit">МБ PSS</span>
+                <span class="mem-proc-tag" id="memProcesses">-- процессов</span>
+              </div>
+            </div>
+            <button class="primary-btn" id="btnFreeMemory">
+              <svg><use href="#i-broom"/></svg>
+              <span>Освободить память</span>
+            </button>
+          </div>
+
+          <div class="mem-bar-track">
+            <div class="mem-bar-fill" id="memBar" style="width: 25%"></div>
+          </div>
+          <p class="mem-sub">Аврора Браузер регулярно погружает неактивные вкладки в сон и сжимает процессы Chromium.</p>
+        </div>
+
+        <div class="card">
+          <div class="setting-row" data-search="сон вкладки экономия памяти неактивные спать">
+            <div class="row-text">
+              <div class="row-title">Сон неактивных вкладок</div>
+              <div class="row-desc">Вкладки без звука засыпают через 5 минут простоя, высвобождая память.</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="tgSleep" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row" data-search="восстановление сессии открытые вкладки запуск старт">
+            <div class="row-text">
+              <div class="row-title">Восстанавливать вкладки при запуске</div>
+              <div class="row-desc">Открывать ранее открытые сайты при повторном запуске Аврора Браузера.</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="tgSession" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row" data-search="режим экономии памяти chromium службы фоновые">
+            <div class="row-text">
+              <div class="row-title">Агрессивная экономия памяти</div>
+              <div class="row-desc">Ограничивает процессы Chromium и выключает фоновые сервисы. <span class="note">(Требуется перезапуск)</span></div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="tgMemorySaver" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Privacy -->
+      <section class="section" id="sec-privacy">
+        <div class="section-head">
+          <h2>Приватность и очистка</h2>
+          <p>Блокировка рекламы и управление данными просмотра.</p>
+        </div>
+
+        <div class="card">
+          <div class="setting-row" data-search="реклама блокировка adblock трекеры баннеры">
+            <div class="row-text">
+              <div class="row-title">Блокировка рекламы и трекеров</div>
+              <div class="row-desc">Автоматически фильтрует рекламные сети и следящие скрипты.</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="tgAdblock" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row" data-search="очистить историю просмотров посещения журнал">
+            <div class="row-text">
+              <div class="row-title">История просмотров</div>
+              <div class="row-desc">Удалить весь сохранённый журнал посещённых страниц.</div>
+            </div>
+            <button class="ghost-btn danger" id="btnClearHistory">Очистить историю</button>
+          </div>
+
+          <div class="setting-row" data-search="кэш очистить временные файлы диск">
+            <div class="row-text">
+              <div class="row-title">Кэш браузера</div>
+              <div class="row-desc">Освободить временные сохранённые файлы и изображения веб-сайтов.</div>
+            </div>
+            <button class="ghost-btn" id="btnClearCache">Очистить кэш</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: About -->
+      <section class="section" id="sec-about">
+        <div class="section-head">
+          <h2>О браузере</h2>
+          <p>Информация о версии, платформе и сочетания клавиш.</p>
+        </div>
+
+        <div class="card about-hero" data-search="aurora версия chromium electron linux автор сборка">
+          <div class="about-icon"><svg><use href="#i-logo"/></svg></div>
+          <div class="about-details">
+            <h3>Аврора Браузер <span id="aboutVersion">1.0.0</span></h3>
+            <p class="about-subtitle">Легковесный десктопный браузер с фокусом на минимализм и экономию памяти.</p>
+            <div class="about-chips">
+              <span class="chip">Chromium <strong id="aboutChromium">--</strong></span>
+              <span class="chip">Electron <strong id="aboutElectron">--</strong></span>
+              <span class="chip" id="aboutPlatform">Linux x64</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shortcuts Grid -->
+        <div class="card" data-search="горячие клавиши комбинации сочетания клавиатура хоткеи">
+          <div class="card-head">
+            <div class="row-title">Полезные сочетания клавиш</div>
+          </div>
+          <div class="shortcuts-grid">
+            <div class="sc-item"><kbd>Ctrl</kbd> + <kbd>T</kbd><span>Новая вкладка</span></div>
+            <div class="sc-item"><kbd>Ctrl</kbd> + <kbd>W</kbd><span>Закрыть вкладку</span></div>
+            <div class="sc-item"><kbd>Ctrl</kbd> + <kbd>L</kbd><span>Адресная строка</span></div>
+            <div class="sc-item"><kbd>Ctrl</kbd> + <kbd>,</kbd><span>Настройки браузера</span></div>
+            <div class="sc-item"><kbd>Ctrl</kbd> + <kbd>D</kbd><span>Добавить в закладки</span></div>
+            <div class="sc-item"><kbd>Ctrl</kbd> + <kbd>H</kbd><span>Открыть историю</span></div>
+            <div class="sc-item"><kbd>Ctrl</kbd> + <kbd>J</kbd><span>Загрузки</span></div>
+            <div class="sc-item"><kbd>Ctrl</kbd> + <kbd>F</kbd><span>Поиск на странице</span></div>
+            <div class="sc-item"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd><span>Вернуть вкладку</span></div>
+            <div class="sc-item"><kbd>F12</kbd><span>DevTools</span></div>
+          </div>
+        </div>
+
+        <div class="card danger-card" data-search="сбросить сброс настройки по умолчанию дефолт">
+          <div class="setting-row">
+            <div class="row-text">
+              <div class="row-title text-danger">Сброс всех настроек</div>
+              <div class="row-desc">Возвращает оформление, поисковик и настройки поведения к исходным.</div>
+            </div>
+            <button class="danger-btn" id="btnResetSettings">Сбросить всё</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Link Modal -->
+  <div class="modal-backdrop" id="linkModal" hidden>
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="linkModalTitle">Добавить сайт</h3>
+        <button class="icon-btn-sm" id="btnLinkClose"><svg><use href="#i-x"/></svg></button>
+      </div>
+      <div class="modal-body">
+        <label class="field">
+          <span>Название</span>
+          <input type="text" id="linkNameInput" placeholder="Например: GitHub" maxlength="30" spellcheck="false">
+        </label>
+        <label class="field">
+          <span>Веб-адрес</span>
+          <input type="text" id="linkUrlInput" placeholder="github.com" spellcheck="false">
+        </label>
+      </div>
+      <div class="modal-foot">
+        <button class="ghost-btn" id="btnLinkCancel">Отмена</button>
+        <button class="primary-btn" id="btnLinkSave">Сохранить</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm Modal -->
+  <div class="modal-backdrop" id="confirmModal" hidden>
+    <div class="modal-card sm">
+      <div class="modal-head">
+        <h3 id="confirmTitle">Подтверждение</h3>
+        <button class="icon-btn-sm" id="btnConfirmClose"><svg><use href="#i-x"/></svg></button>
+      </div>
+      <div class="modal-body">
+        <p id="confirmDesc">Вы уверены?</p>
+      </div>
+      <div class="modal-foot">
+        <button class="ghost-btn" id="btnConfirmCancel">Отмена</button>
+        <button class="danger-btn" id="btnConfirmOk">Продолжить</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast" hidden></div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-logo" viewBox="0 0 24 24"><path d="M6.9 19.6 12 5.2l5.1 14.4M8.9 15.2h6.2"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.4"/><path d="M15.5 15.5 20 20"/></symbol>
+      <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 0 0 0 17h1.2a1.9 1.9 0 0 0 1.4-3.2 1.9 1.9 0 0 1 1.4-3.2h2.4a2.6 2.6 0 0 0 2.6-2.7A8.3 8.3 0 0 0 12 3.5z"/><circle cx="8" cy="9" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="6.8" r="1" fill="currentColor" stroke="none"/><circle cx="16" cy="9" r="1" fill="currentColor" stroke="none"/><circle cx="7.6" cy="13.6" r="1" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.3 3.6 5.2 3.6 8.5S14.4 18.2 12 20.5C9.6 18.2 8.4 15.3 8.4 12S9.6 5.8 12 3.5z"/></symbol>
+      <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="5.5" y="5.5" width="13" height="13" rx="2.5"/><path d="M8.5 2.5v3M12 2.5v3M15.5 2.5v3M8.5 18.5v3M12 18.5v3M15.5 18.5v3M2.5 8.5h3M2.5 12h3M2.5 15.5h3M18.5 8.5h3M18.5 12h3M18.5 15.5h3"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3.5 19 6v5.5c0 4.3-2.8 7.6-7 9-4.2-1.4-7-4.7-7-9V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5"/><circle cx="12" cy="7.8" r="1" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+      <symbol id="i-broom" viewBox="0 0 24 24"><path d="M18 3l3 3-10 10-3-3z"/><path d="M11 13l-4 4a2.8 2.8 0 0 0 4 4l4-4"/><path d="M3 21l3-3"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 9.5 17 19 7.5"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15"/><path d="M9.5 7V4.5h5V7"/><path d="M6.5 7l1 13h9l1-13"/><path d="M10.5 11v5M13.5 11v5"/></symbol>
+      <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+    </defs>
+  </svg>
+
+  <script src="settings.js"></script>
+</body>
+</html>

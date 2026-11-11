@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Аврора Браузер
+Name[en]=Aurora Browser
+GenericName=Web Browser
+Comment=Минималистичный браузер для Linux
+Exec="/home/mops/Документы/Проект по умолчанию/aurora/run.sh" %U
+Icon=/home/mops/Документы/Проект по умолчанию/aurora/assets/icon.png
+Terminal=false
+Categories=Network;WebBrowser;
+StartupWMClass=Aurora
+MimeType=x-scheme-handler/http;x-scheme-handler/https;
+Keywords=browser;web;internet;aurora;аврора браузер;

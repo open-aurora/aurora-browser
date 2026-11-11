@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Страница недоступна</title>
+  <link rel="stylesheet" href="error.css">
+</head>
+<body>
+  <div class="scene" aria-hidden="true">
+    <div class="blob a"></div>
+    <div class="blob b"></div>
+  </div>
+
+  <main class="wrap">
+    <div class="card">
+      <div class="glyph">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14.5 33h19a7 7 0 0 0 .8-13.95A10.5 10.5 0 0 0 13.9 17 7.6 7.6 0 0 0 14.5 33z"/>
+          <path d="M19 26.5 29 20M29 20l-1 4.6M29 20l-4.6 1"/>
+        </svg>
+      </div>
+      <h1>Не удалось открыть страницу</h1>
+      <p class="host" id="host"></p>
+      <p class="desc" id="desc">Проверьте подключение к интернету и попробуйте ещё раз.</p>
+      <div class="actions">
+        <button class="btn ghost" id="homeBtn">На стартовую</button>
+        <button class="btn primary" id="retryBtn">Повторить</button>
+      </div>
+      <p class="code" id="code"></p>
+    </div>
+  </main>
+
+  <script src="error.js"></script>
+</body>
+</html>
